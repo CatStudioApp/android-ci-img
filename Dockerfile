@@ -10,6 +10,11 @@ RUN rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-a
 
 RUN cargo install typeshare-cli cargo-ndk
 
+RUN mkdir -p "${HOME}/.npm" \
+    && npm config set prefix "${HOME}/.npm"
+ENV PNPM_HOME="${HOME}/.pnpm"
+ENV PATH="${PNPM_HOME}:${HOME}/.npm/bin:${PATH}"
+
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
     sudo apt-get install -y nodejs && \
     sudo apt-get clean && \
@@ -21,5 +26,5 @@ RUN sudo corepack enable
 # Install PNPM using Corepack
 RUN sudo corepack prepare pnpm@latest --activate
 
-RUN sudo npm install @openapitools/openapi-generator-cli -g
-RUN sudo openapi-generator-cli version
+RUN npm install @openapitools/openapi-generator-cli -g
+RUN openapi-generator-cli version
