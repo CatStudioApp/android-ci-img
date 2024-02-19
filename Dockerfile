@@ -10,16 +10,16 @@ RUN rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-a
 
 RUN cargo install typeshare-cli cargo-ndk
 
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
+    sudo apt-get install -y nodejs && \
+    sudo apt-get clean && \
+    sudo rm -rf /var/lib/apt/lists/*
 
 # Enable Corepack to manage package managers
-RUN corepack enable
+RUN sudo corepack enable
 
 # Install PNPM using Corepack
-RUN corepack prepare pnpm@latest --activate
+RUN sudo corepack prepare pnpm@latest --activate
 
-RUN npm install @openapitools/openapi-generator-cli -g
-RUN openapi-generator-cli version
+RUN sudo npm install @openapitools/openapi-generator-cli -g
+RUN sudo openapi-generator-cli version
