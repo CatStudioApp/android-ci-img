@@ -15,10 +15,12 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
     sudo apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p "${HOME}/.npm" \
-    && npm config set prefix "${HOME}/.npm"
-ENV PNPM_HOME="${HOME}/.pnpm"
-ENV PATH="${PNPM_HOME}:${HOME}/.npm/bin:${PATH}"
+ENV HOME /home/circleci
+
+RUN mkdir -p "$HOME/.npm" \
+    && npm config set prefix "$HOME/.npm"
+ENV PNPM_HOME="$HOME/.pnpm"
+ENV PATH="${PNPM_HOME}:$HOME/.npm/bin:${PATH}"
 
 RUN echo $PATH
 
