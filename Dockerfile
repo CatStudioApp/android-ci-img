@@ -20,7 +20,7 @@ ENV HOME /home/circleci
 RUN mkdir -p "$HOME/.npm" \
     && npm config set prefix "$HOME/.npm"
 ENV PNPM_HOME="$HOME/.pnpm"
-ENV PATH="${PNPM_HOME}:$HOME/.npm/bin:${PATH}:$HOME/.rbenv/bin"
+ENV PATH="${PNPM_HOME}:$HOME/.npm/bin:${PATH}"
 
 RUN echo $PATH
 
@@ -32,11 +32,3 @@ RUN sudo corepack prepare pnpm@latest --activate
 
 RUN npm install @openapitools/openapi-generator-cli -g
 RUN openapi-generator-cli version
-
-RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc  
-RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-
-RUN source ~/.bashrc
-
-RUN rbenv install 3.2.2
