@@ -20,6 +20,8 @@ RUN mkdir -p "${HOME}/.npm" \
 ENV PNPM_HOME="${HOME}/.pnpm"
 ENV PATH="${PNPM_HOME}:${HOME}/.npm/bin:${PATH}"
 
+RUN echo $PATH
+
 # Enable Corepack to manage package managers
 RUN sudo corepack enable
 
