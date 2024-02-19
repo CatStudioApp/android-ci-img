@@ -10,15 +10,15 @@ RUN rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-a
 
 RUN cargo install typeshare-cli cargo-ndk
 
-RUN mkdir -p "${HOME}/.npm" \
-    && npm config set prefix "${HOME}/.npm"
-ENV PNPM_HOME="${HOME}/.pnpm"
-ENV PATH="${PNPM_HOME}:${HOME}/.npm/bin:${PATH}"
-
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
     sudo apt-get install -y nodejs && \
     sudo apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p "${HOME}/.npm" \
+    && npm config set prefix "${HOME}/.npm"
+ENV PNPM_HOME="${HOME}/.pnpm"
+ENV PATH="${PNPM_HOME}:${HOME}/.npm/bin:${PATH}"
 
 # Enable Corepack to manage package managers
 RUN sudo corepack enable
