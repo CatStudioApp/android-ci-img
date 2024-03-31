@@ -10,7 +10,9 @@ ENV PATH="/home/circleci/.cargo/bin:${PATH}"
 
 RUN rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
 
-RUN cargo install typeshare-cli cargo-ndk sccache
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/1Password/typeshare/releases/download/v1.8.0/typeshare-cli-v1.8.0-installer.sh | sh
+
+RUN cargo install cargo-ndk sccache
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
     sudo apt-get install -y nodejs && \
