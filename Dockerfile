@@ -1,4 +1,4 @@
-FROM cimg/android:2024.04-ndk
+FROM cimg/android:2024.07-ndk
 
 RUN sdkmanager "ndk;26.1.10909125" "cmake;3.22.1"
 
