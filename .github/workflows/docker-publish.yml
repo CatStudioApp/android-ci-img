@@ -32,6 +32,11 @@ jobs:
       id-token: write
 
     steps:
+      # ref: https://stackoverflow.com/a/75539500/24782451
+      - name: Remove unnecessary files
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
       - name: Checkout repository
         uses: actions/checkout@v3
 
