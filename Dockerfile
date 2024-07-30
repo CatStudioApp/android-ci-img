@@ -14,8 +14,8 @@ RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/1Password/typeshare
 
 RUN cargo install cargo-ndk sccache
 
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - && \
-    sudo apt-get install -y nodejs ccache && \
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash - && \
+    sudo apt-get install -y nodejs ccache libdbus-1-dev pkg-config && \
     sudo apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/*
 
